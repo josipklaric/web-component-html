@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Web components demo</title>
+    
+    <style>
+        body { background-color: aqua; }
+    </style>
+
+
+    <script src="webcomponentsjs/webcomponents-loader.js"></script>
+    <script>if (!window.customElements) { document.write('<!--'); }</script>
+    <script src="webcomponentsjs/custom-elements-es5-adapter.js"></script> 
+
+    <!-- ! DO NOT REMOVE THIS COMMENT, WE NEED ITS CLOSING MARKER -->
+
+    <script type="module" src="weather-box.js"></script>
+</head>
+<body>
+    <h1>Weather box web component demo page</h1>
+    
+    <weather-box city="Zagreb" background="blueviolet">Fallback conetent</weather-box>
+
+    <script>
+        var weatherBoxElement = document.getElementsByTagName('weather-box')[0];
+        weatherBoxElement.addEventListener('contentChanged', function(e) {
+            console.log("contentChanged event handler ...");
+            console.log("current conditions: ", e.detail);
+        });
+    </script>
+</body>
+</html>
